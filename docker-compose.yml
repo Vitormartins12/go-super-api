@@ -1,10 +1,20 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  web:
-    build: .
-    ports:
-      - "8085:8085"
+  my-service:
+    container_name: my-service
+    build:
+      context: .
+      target: dev
+      dockerfile: Dockerfile.dev
     volumes:
-      - .:/usr/src/app
-    command: air ./cmd/main.go -b 0.0.0.0
+    - .:/app:rw,delegated
+    networks:
+    - my_network
+    ports:
+    - "8085:8085"
+    - 2345:2345
+
+networks:
+  my_network:
+    name: my_network

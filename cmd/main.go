@@ -22,5 +22,6 @@ func main() {
 
 // Endpoints
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("teste ")
 	w.Write([]byte("hello"))
 }
